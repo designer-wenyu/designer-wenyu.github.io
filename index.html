@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵文瑜-个人简历</title>
+    <link rel="stylesheet" href="./css/reset.css"></link>
+    <link rel="stylesheet" href="./css/style.css"></link>
+</head>
+<body>
+    <div class="nav-box">
+        <div class="nav">
+            <img src="./img/logo.png" class="logo">
+            <ul class="nav-list">
+                <div class="nav-line"></div>
+                <li class="item-list" onclick="changeNav(0, 'home')">HOME /</li>
+                <li class="item-list" onclick="changeNav(1, 'kaixin')">开心汽车 /</li>
+                <li class="item-list" onclick="changeNav(2, 'duanShiPin')">短视频 /</li>
+                <li class="item-list" onclick="changeNav(3, 'caiYouHui')">汇有财 /</li>
+                <li class="item-list" onclick="changeNav(4, 'jianZhuang')">简装家居 /</li>
+                <li class="item-list" onclick="changeNav(5, 'wangZhan')">网站设计 /</li>
+                <li class="item-list" onclick="changeNav(6, 'qiTa')">其他设计 /</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+
+    </div>
+</body>
+</html>
+<script>
+    let config = {
+        'home': 2,
+        'kaixin': 17,
+        'duanShiPin': 15,
+        'caiYouHui': 23,
+        'jianZhuang': 21,
+        'wangZhan': 9,
+        'qiTa': 21
+    }
+    function changeNav(index, type) {
+        // 点击nav跳转 移动选中标
+        let list = document.getElementsByClassName('item-list')
+        let width = 0
+        for(let i=0; i < index; i++) {
+            width += list[i].offsetWidth
+        }
+        let line = document.getElementsByClassName('nav-line')
+        line[0].style.left = (62 * index) + width - 7 + 'px'
+
+        // 循环插入图片
+        let content = document.getElementsByClassName('content')
+        content[0].innerHTML = ''
+        for(let i=0; i < config[type]; i++) {
+            let img = document.createElement('img')
+            img.className = 'content-img'
+            img.src = `./img/${type}/${i+1}.png`
+            content[0].appendChild(img)
+        }
+    }
+    (function() {
+        changeNav(0, 'home')
+    })()
+</script>
